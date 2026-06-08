@@ -4,7 +4,7 @@ import {
   buildSupplierMessage,
   toNumber,
 } from "@/lib/inventory";
-import type { Product } from "@/lib/supabase";
+import type { Product } from "@/api/products";
 
 export function SupplierModal({
   product,

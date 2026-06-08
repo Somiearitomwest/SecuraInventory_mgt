@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { FiRefreshCw } from "react-icons/fi";
-import { envConfig, hasSupabaseConfig } from "@/lib/config";
+import { fetchRecentPreOrders, type RecentPreOrder } from "@/api/pre-orders";
+import { fetchProducts, type Product } from "@/api/products";
 import {
   buildSupplierMessage,
   computeDashboardMetrics,
@@ -10,13 +11,8 @@ import {
   getSuggestedReorderQuantity,
   resolveSupplierEmail,
 } from "@/lib/inventory";
-import {
-  createSecuraSupabaseClient,
-  fetchProducts,
-  fetchRecentPreOrders,
-  type Product,
-  type RecentPreOrder,
-} from "@/lib/supabase";
+import { createSecuraSupabaseClient } from "@/supabase/client";
+import { envConfig, hasSupabaseConfig } from "@/supabase/config";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { LowStockPanel } from "./LowStockPanel";
 import { MetricsGrid } from "./MetricsGrid";

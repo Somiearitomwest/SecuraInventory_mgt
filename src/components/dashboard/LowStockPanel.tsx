@@ -3,7 +3,7 @@ import {
   getSuggestedReorderQuantity,
   toNumber,
 } from "@/lib/inventory";
-import type { Product } from "@/lib/supabase";
+import type { Product } from "@/api/products";
 import { ProductImage } from "@/components/shared/ProductImage";
 
 export function LowStockPanel({
