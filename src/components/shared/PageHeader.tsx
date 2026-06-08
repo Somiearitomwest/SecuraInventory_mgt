@@ -12,7 +12,7 @@ export function PageHeader({
   return (
     <header className="page-header">
       <div>
-        <p className="eyebrow">Secura Digital Systems</p>
+        {/* <p className="eyebrow">Secura Digital Systems</p> */}
         <h1>{title}</h1>
         <p className="muted">{subtitle}</p>
       </div>

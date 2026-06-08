@@ -1,13 +1,13 @@
 # Secura Inventory Management
 
-Admin dashboard for Secura Digital Systems inventory monitoring, low-stock alerts, and supplier restock email drafts.
+Admin dashboard for Secura Digital Systems inventory monitoring, pre-order context, and supplier restock email drafts.
 
 ## What Is Included
 
 - Next.js App Router dashboard written in TypeScript
 - Supabase reads for `products` and recent `pre_orders`
-- Low-stock alerts using `products.stock_quantity <= products.low_stock_threshold`
-- Supplier message modal tied to each low-stock product
+- Low-stock status using `products.stock_quantity <= products.low_stock_threshold`
+- Supplier message modal opened from product-row actions
 - Copy-to-clipboard and `mailto:` Send Email actions
 - Minimal migration for inventory fields on `products`
 - Node built-in tests for inventory and supplier message logic

@@ -96,12 +96,14 @@ export function computeDashboardMetrics({
 }): {
   totalProducts: number;
   lowStockProducts: number;
+  totalRevenue: number;
   totalPreOrders: number;
   estimatedPreOrderValue: number;
 } {
   return {
     totalProducts: products.length,
     lowStockProducts: getLowStockProducts(products).length,
+    totalRevenue: 0,
     totalPreOrders: preOrders.length,
     estimatedPreOrderValue: preOrders.reduce((total, preOrder) => {
       return total + toNumber(preOrder.total_amount);

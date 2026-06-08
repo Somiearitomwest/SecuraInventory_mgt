@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Secura Inventory Admin",
   description:
-    "Secura Digital Systems inventory dashboard for low-stock alerts and supplier restock emails.",
+    "Secura Digital Systems inventory dashboard for stock status and supplier restock emails.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
