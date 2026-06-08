@@ -6,5 +6,5 @@ export function createSecuraSupabaseClient(): SupabaseClient | null {
     return null;
   }
 
-  return createClient(envConfig.supabaseUrl, envConfig.supabaseAnonKey);
+  return createClient(envConfig.supabaseUrl, envConfig.supabasePublishableKey);
 }

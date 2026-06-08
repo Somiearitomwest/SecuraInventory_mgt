@@ -114,8 +114,8 @@ export function DashboardHome() {
           <h2>Supabase env vars required</h2>
           <p className="muted">
             Configure <code>NEXT_PUBLIC_SUPABASE_URL</code> and{" "}
-            <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code> in <code>.env.local</code>, then restart
-            the Next.js dev server to load products, pre-orders, and low-stock alerts.
+            <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code> in <code>.env.local</code>, then
+            restart the Next.js dev server to load products, pre-orders, and low-stock alerts.
           </p>
         </section>
       </>

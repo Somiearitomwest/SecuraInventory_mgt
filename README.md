@@ -34,11 +34,11 @@ Create `.env.local` in the project root:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://project-ref.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 NEXT_PUBLIC_DEFAULT_SUPPLIER_EMAIL=orders@supplier.example
 ```
 
-`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are required for loading dashboard data. `NEXT_PUBLIC_DEFAULT_SUPPLIER_EMAIL` is optional; `supplier_email` on a product overrides it when generating a restock email.
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are required for loading dashboard data. `NEXT_PUBLIC_DEFAULT_SUPPLIER_EMAIL` is optional; `supplier_email` on a product overrides it when generating a restock email.
 
 ## Run Locally
 
