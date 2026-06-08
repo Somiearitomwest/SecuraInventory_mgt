@@ -69,9 +69,16 @@ button {
   border-radius: var(--radius);
   display: grid;
   place-items: center;
-  background: var(--primary);
-  color: #ffffff;
-  font-weight: 700;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.brand-logo {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .brand-title {

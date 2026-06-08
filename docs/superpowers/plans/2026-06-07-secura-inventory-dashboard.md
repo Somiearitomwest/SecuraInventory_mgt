@@ -12,22 +12,22 @@
 
 ## File Structure
 
-- `app/layout.tsx`: Root metadata and global CSS import.
-- `app/page.tsx`: Dashboard route entry.
-- `app/components/DashboardApp.tsx`: Client admin shell, data loading, dashboard rendering, settings, and supplier modal.
-- `app/lib/config.ts`: Environment/localStorage config helpers.
-- `app/lib/inventory.ts`: Pure inventory and supplier-message rules.
-- `app/lib/supabase.ts`: Typed Supabase client/query helpers.
-- `app/globals.css`: Secura admin design system and responsive layout.
-- `tests/inventory.test.ts`: Node tests for pure inventory/message behavior.
-- `supabase/migrations/20260607000000_add_inventory_fields.sql`: Minimal product inventory columns.
+- `src/app/layout.tsx`: Root metadata and global CSS import.
+- `src/app/page.tsx`: Dashboard route entry.
+- `src/components/DashboardApp.tsx`: Client admin shell, data loading, dashboard rendering, and supplier modal.
+- `src/lib/config.ts`: Environment config helpers.
+- `src/lib/inventory.ts`: Pure inventory and supplier-message rules.
+- `src/lib/supabase.ts`: Typed Supabase client/query helpers.
+- `src/app/globals.css`: Secura admin design system and responsive layout.
+- `src/tests/inventory.test.ts`: Node tests for pure inventory/message behavior.
+- `src/supabase/migrations/20260607000000_add_inventory_fields.sql`: Minimal product inventory columns.
 - `README.md`: Setup, migration, env, run, and test instructions.
 
 ## Tasks
 
 ### Task 1: Typed Inventory Rules
 
-- [x] Move pure inventory and supplier message rules into `app/lib/inventory.ts`.
+- [x] Move pure inventory and supplier message rules into `src/lib/inventory.ts`.
 - [x] Update tests to import the TypeScript module.
 - [x] Verify red failure before the TypeScript module exists.
 - [x] Implement the TypeScript module.
@@ -36,13 +36,13 @@
 ### Task 2: Next.js Project Foundation
 
 - [x] Add `package.json`, `tsconfig.json`, `next-env.d.ts`, and `next.config.mjs`.
-- [x] Add App Router entry files in `app/layout.tsx` and `app/page.tsx`.
+- [x] Add App Router entry files in `src/app/layout.tsx` and `src/app/page.tsx`.
 - [x] Add Next public environment variable documentation.
 
 ### Task 3: Supabase And Config Modules
 
-- [x] Add `app/lib/config.ts` for env/localStorage config.
-- [x] Add `app/lib/supabase.ts` for typed Supabase queries.
+- [x] Add `src/lib/config.ts` for env config.
+- [x] Add `src/lib/supabase.ts` for typed Supabase queries.
 - [x] Keep the minimal products migration.
 
 ### Task 4: React Dashboard UI

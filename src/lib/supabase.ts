@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { AppConfig } from "./config";
+import { envConfig, hasSupabaseConfig } from "./config";
 
 export type Product = {
   id: string;
@@ -69,12 +69,12 @@ function normalizeRecentPreOrder(row: SupabaseRecentPreOrderRow): RecentPreOrder
   };
 }
 
-export function createSecuraSupabaseClient(config: AppConfig): SupabaseClient | null {
-  if (!config.supabaseUrl || !config.supabaseAnonKey) {
+export function createSecuraSupabaseClient(): SupabaseClient | null {
+  if (!hasSupabaseConfig()) {
     return null;
   }
 
-  return createClient(config.supabaseUrl, config.supabaseAnonKey);
+  return createClient(envConfig.supabaseUrl, envConfig.supabaseAnonKey);
 }
 
 export async function fetchProducts(supabase: SupabaseClient): Promise<Product[]> {

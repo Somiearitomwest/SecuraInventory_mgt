@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --test tests/inventory.test.ts"
+    "test": "node --test src/tests/*.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.75.0",
@@ -22,5 +22,5 @@
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.7.0"
   },
-    "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
+  "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92"
 }
