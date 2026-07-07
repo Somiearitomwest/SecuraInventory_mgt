@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { fetchRecentPreOrders, type RecentPreOrder } from "@/api/pre-orders";
-import { fetchProducts, type Product } from "@/api/products";
+import { fetchRecentPreOrders } from "@/api/pre-orders";
+import { fetchProducts } from "@/api/products";
 import { createSupabaseClient } from "@/supabase/client";
 import { hasSupabaseConfig } from "@/supabase/config";
+import type { RecentPreOrder } from "@/types/pre-orders";
+import type { Product } from "@/types/products";
 
 export function useDashboardData() {
   const [products, setProducts] = useState<Product[]>([]);

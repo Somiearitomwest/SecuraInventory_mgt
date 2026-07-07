@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { FiRefreshCw } from "react-icons/fi";
-import type { Product } from "@/api/products";
+import type { Product } from "@/types/products";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import {
   buildSupplierMessage,

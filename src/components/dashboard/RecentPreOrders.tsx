@@ -1,5 +1,5 @@
 import { toNumber } from "@/lib/inventory";
-import type { RecentPreOrder } from "@/api/pre-orders";
+import type { RecentPreOrder } from "@/types/pre-orders";
 import { formatCurrency, formatDate } from "./formatters";
 
 export function RecentPreOrders({ preOrders }: { preOrders: RecentPreOrder[] }) {

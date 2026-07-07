@@ -1,4 +1,4 @@
-import type { Product } from "@/api/products";
+import type { Product } from "@/types/products";
 
 export function ProductImage({ product }: { product: Product }) {
   if (product.product_image) {

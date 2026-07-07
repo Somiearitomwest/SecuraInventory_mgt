@@ -177,7 +177,32 @@ When Contact supplier is selected from a product row:
 4. Generate message preview.
 5. Allow copy or mailto action.
 
+## Dashboard Access Guard (Supabase Auth)
+
+To secure company metrics and lock controls, the dashboard must be guarded by a secure authentication gate:
+
+### 1. Route Security (Next.js Middleware)
+A Next.js Middleware file (`src/middleware.ts`) will act as the route guard, running on the edge:
+- **Protected Paths**: `/` (Dashboard), `/products`, and any future sub-routes (e.g., `/customers`, `/pre-orders`).
+- **Unprotected Paths**: `/login`, `/api/*`, static assets, and images.
+- **Behavior**:
+  - The middleware checks for the presence of a valid Supabase session token in the client cookies.
+  - If an unauthenticated user attempts to access a protected route, they are automatically redirected to `/login`.
+  - If an authenticated user attempts to access `/login`, they are redirected back to `/`.
+
+### 2. Login View (`/login`)
+A dedicated login route (`src/app/login/page.tsx`) will render a clean, branded login screen:
+- **Form Inputs**: Email and Password.
+- **Auth Trigger**: Standard login calling Supabase's `supabase.auth.signInWithPassword(...)`.
+- **Session Syncing**: Set up automatic session cookie sync so the middleware can read the state on subsequent server-side navigation requests.
+
+### 3. Client State & Layout Integration
+- **Auth Provider**: An `AuthProvider` context wrapping the layout to track user session details.
+- **Header Actions**: Display user profile initials and a **Logout** action that calls `supabase.auth.signOut()`, flushing cookies and routing the client back to `/login`.
+
+
 ## Error And Empty States
+
 
 Missing Supabase env vars:
 

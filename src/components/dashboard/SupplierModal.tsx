@@ -4,7 +4,7 @@ import {
   buildSupplierMessage,
   toNumber,
 } from "@/lib/inventory";
-import type { Product } from "@/api/products";
+import type { Product } from "@/types/products";
 
 export function SupplierModal({
   product,

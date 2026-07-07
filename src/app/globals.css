@@ -113,6 +113,7 @@ button {
   gap: 10px;
   padding: 11px 12px;
   text-align: left;
+  text-decoration: none;
   transition: background 0.15s ease, color 0.15s ease;
   width: 100%;
 }
@@ -142,6 +143,13 @@ button {
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 24px;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
 }
 
 .eyebrow {
@@ -604,6 +612,12 @@ tbody tr:last-child td {
   gap: 14px;
 }
 
+.form-row {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .field {
   display: grid;
   gap: 6px;
@@ -717,6 +731,11 @@ tbody tr:last-child td {
     display: block;
   }
 
+  .header-actions {
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
+
   .metrics-grid {
     grid-template-columns: 1fr;
   }
@@ -734,7 +753,28 @@ tbody tr:last-child td {
     grid-template-columns: 1fr;
   }
 
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
   .preorder-item {
     grid-template-columns: 42px minmax(0, 1fr);
   }
 }
+
+.text-danger {
+  color: var(--danger) !important;
+}
+
+.button-danger {
+  background: var(--danger) !important;
+  color: #fff !important;
+}
+
+.button-danger:hover:not(:disabled) {
+  background: #ad3434 !important;
+}
+
+
+
+
