@@ -303,6 +303,24 @@ Manual verification should cover:
 - Check responsive layout and action-menu positioning.
 - Fix visible overlap, truncation, or awkward empty/error states before handoff.
 
+## Completed Extensions (July 2026)
+
+The following extensions have been successfully implemented:
+
+### 1. Interactive Catalog & Product Management
+- **View Routings**: Created a fully dedicated products management dashboard view at `/products` (`src/app/products/page.tsx` and `src/components/products/ProductPage.tsx`).
+- **Interactive Sorting**: Added interactive sorting features to the products catalog tables, supporting clicks on Name, Amount, Stock, Threshold, and Status column headers.
+- **Stock Filtering**: Implemented a status dropdown selector to filter rows by Stock Status ("All stock", "Low stock", "Healthy").
+- **Catalog Actions**: Added row menu triggers for creating new products, updating product parameters via pre-filled modals, deleting rows, and performing inline increment (`+`) and decrement (`-`) adjustments directly in database state.
+- **Reusable Input Components**: Extracted input labels and input components into a unified, reusable `<InputField />` helper.
+
+### 2. Dashboard Access Guard & Authentication Gates
+- **Edge Route Guards**: Configured a Next.js Edge Middleware route guard (`src/middleware.ts`) preventing access to `/` and `/products` if unauthenticated.
+- **Session Cookie Synchronizer**: Hooked a listener to Supabase client changes (`client.ts`) that automatically synchronizes the active session JWT to a secure `sb-access-token` browser cookie with a 1-day duration limit.
+- **AuthProvider Context**: Created global authentication wrappers and hooks (`AuthProvider.tsx`) providing user session hooks and logout methods.
+- **Branded Login View**: Added a dark-theme, styled glassmorphism `/login` route (`page.tsx`) with error overlays.
+- **Dynamic Header Elements**: Integrated initials avatars and **Logout** buttons inside standard page headers.
+
 ## Future Recommendations
 
 After the basic dashboard works, consider adding:
