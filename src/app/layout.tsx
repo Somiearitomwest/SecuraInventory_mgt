@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   title: "Secura Inventory Admin",
   description:
     "Secura Digital Systems inventory dashboard for stock status and supplier restock emails.",
+  icons: '/favicon.ico',
+
 };
+
+
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
