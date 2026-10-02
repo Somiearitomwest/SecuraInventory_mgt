@@ -33,6 +33,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -328,6 +329,12 @@ h3 {
   color: var(--success);
 }
 
+.status-neutral {
+  background: var(--surface-secondary);
+  border-color: var(--border);
+  color: var(--text);
+}
+
 .preorder-list {
   display: grid;
   gap: 10px;
@@ -466,6 +473,16 @@ h3 {
   font-size: 15px;
   font-weight: 600;
   padding: 0 18px;
+}
+
+.inventory-sort select {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  outline: 0;
 }
 
 .table-wrap {
@@ -630,12 +647,76 @@ tbody tr:last-child td {
 }
 
 .field input,
+.field select,
 .field textarea {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
   padding: 10px 12px;
   width: 100%;
+}
+
+.field input:disabled {
+  background: var(--surface-secondary);
+  color: var(--muted);
+}
+
+.stacked-cell {
+  display: grid;
+  gap: 3px;
+  white-space: normal;
+}
+
+.stacked-cell span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.order-detail-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.order-main-card {
+  grid-column: 1 / -1;
+}
+
+.details-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.details-list div {
+  display: grid;
+  gap: 4px;
+}
+
+.details-list dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.details-list dd {
+  margin: 0;
+}
+
+.success-state {
+  background: #f8fffc;
+  border: 1px solid #a7e6cf;
+  border-radius: var(--radius);
+  color: var(--success);
+  padding: 12px;
+}
+
+.sr-only {
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
 }
 
 .field textarea {
@@ -757,6 +838,10 @@ tbody tr:last-child td {
     grid-template-columns: 1fr;
   }
 
+  .order-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
   .preorder-item {
     grid-template-columns: 42px minmax(0, 1fr);
   }
@@ -774,7 +859,5 @@ tbody tr:last-child td {
 .button-danger:hover:not(:disabled) {
   background: #ad3434 !important;
 }
-
-
 
 

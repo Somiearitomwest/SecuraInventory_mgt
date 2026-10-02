@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { ComponentType } from "react";
-import { FiBox, FiFileText, FiGrid, FiUsers } from "react-icons/fi";
+import { FiBox, FiFileText, FiGrid, FiShoppingBag, FiUsers } from "react-icons/fi";
 
-type NavItemId = "dashboard" | "products" | "pre-orders" | "customers";
+type NavItemId = "dashboard" | "products" | "orders" | "pre-orders" | "customers";
 
 const navItems: Array<{
   id: NavItemId;
@@ -12,6 +12,7 @@ const navItems: Array<{
 }> = [
   { id: "dashboard", label: "Dashboard", href: "/", icon: FiGrid },
   { id: "products", label: "Products", href: "/products", icon: FiBox },
+  { id: "orders", label: "Orders", href: "/orders", icon: FiShoppingBag },
   { id: "pre-orders", label: "Pre-orders", href: "/#", icon: FiFileText },
   { id: "customers", label: "Customers", href: "/#", icon: FiUsers },
 ];

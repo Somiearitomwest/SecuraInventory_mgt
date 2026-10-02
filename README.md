@@ -36,9 +36,12 @@ Create `.env.local` in the project root:
 NEXT_PUBLIC_SUPABASE_URL=https://project-ref.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 NEXT_PUBLIC_DEFAULT_SUPPLIER_EMAIL=orders@supplier.example
+SECURA_WEB_BASE_URL=https://your-secura-web-origin.example
+SECURA_INTERNAL_API_TOKEN=shared-internal-token
 ```
 
 `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are required for loading dashboard data. `NEXT_PUBLIC_DEFAULT_SUPPLIER_EMAIL` is optional; `supplier_email` on a product overrides it when generating a restock email.
+`SECURA_WEB_BASE_URL` and `SECURA_INTERNAL_API_TOKEN` are server-only values used by the Orders admin BFF to call the secura-web internal order APIs. Fulfillment emails remain owned by secura-web.
 
 ## Run Locally
 
