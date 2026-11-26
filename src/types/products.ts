@@ -3,6 +3,7 @@ export type Product = {
   created_at: string | null;
   name: string;
   amount: number | string | null;
+  previous_amount: number | string | null;
   product_image: string | null;
   features: unknown;
   stock_quantity: number | string | null;
@@ -13,6 +14,7 @@ export type Product = {
 export type ProductCreateInput = {
   name: string;
   amount: number;
+  previous_amount: number | null;
   product_image: string;
   stock_quantity: number;
   low_stock_threshold: number;

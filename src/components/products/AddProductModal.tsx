@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { FiPlus, FiX } from "react-icons/fi";
 import { InputField } from "@/components/shared/InputField";
+import { previousAmountError } from "@/lib/product-price";
 import type { ProductCreateInput } from "@/types/products";
 
 const initialForm: ProductCreateInput = {
   amount: 0,
+  previous_amount: null,
   low_stock_threshold: 0,
   name: "",
   product_image: "",
@@ -24,9 +26,17 @@ export function AddProductModal({
   onSubmit: (input: ProductCreateInput) => Promise<void>;
 }) {
   const [form, setForm] = useState<ProductCreateInput>(initialForm);
+  const [previousPriceError, setPreviousPriceError] = useState<string | null>(
+    null,
+  );
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const error = previousAmountError(form.previous_amount, form.amount);
+    setPreviousPriceError(error);
+    if (error) {
+      return;
+    }
     await onSubmit(form);
   }
 
@@ -53,9 +63,16 @@ export function AddProductModal({
           <div>
             <p className="eyebrow">New product</p>
             <h2 id="add-product-title">Add product</h2>
-            <p className="muted small">Create a smart-lock catalog item for inventory tracking.</p>
+            <p className="muted small">
+              Create a smart-lock catalog item for inventory tracking.
+            </p>
           </div>
-          <button className="button button-ghost button-icon" onClick={onClose} title="Close" type="button">
+          <button
+            className="button button-ghost button-icon"
+            onClick={onClose}
+            title="Close"
+            type="button"
+          >
             <FiX size={18} />
           </button>
         </div>
@@ -70,53 +87,87 @@ export function AddProductModal({
           <div className="form-row">
             <InputField
               id="productAmount"
-              label="Amount"
+              label="Selling price"
               min="0"
-              onChange={(event) => updateField("amount", Number(event.target.value))}
+              onChange={(event) =>
+                updateField("amount", Number(event.target.value))
+              }
               required
               type="number"
               value={form.amount}
             />
             <InputField
-              id="productStock"
-              label="Stock quantity"
+              id="productPreviousAmount"
+              label="Previous price"
               min="0"
-              onChange={(event) => updateField("stock_quantity", Number(event.target.value))}
-              required
+              // hint="Optional. Leave blank when this product is not discounted."
+              error={previousPriceError ?? undefined}
+              onChange={(event) => {
+                setPreviousPriceError(null);
+                updateField(
+                  "previous_amount",
+                  event.target.value === "" ? null : Number(event.target.value),
+                );
+              }}
               type="number"
-              value={form.stock_quantity}
+              value={form.previous_amount ?? ""}
             />
           </div>
           <div className="form-row">
             <InputField
+              id="productStock"
+              label="Stock quantity"
+              min="0"
+              onChange={(event) =>
+                updateField("stock_quantity", Number(event.target.value))
+              }
+              required
+              type="number"
+              value={form.stock_quantity}
+            />
+            <InputField
               id="productThreshold"
               label="Low-stock threshold"
               min="0"
-              onChange={(event) => updateField("low_stock_threshold", Number(event.target.value))}
+              onChange={(event) =>
+                updateField("low_stock_threshold", Number(event.target.value))
+              }
               required
               type="number"
               value={form.low_stock_threshold}
             />
-            <InputField
-              id="supplierEmail"
-              label="Supplier email"
-              onChange={(event) => updateField("supplier_email", event.target.value)}
-              type="email"
-              value={form.supplier_email}
-            />
           </div>
+          <InputField
+            id="supplierEmail"
+            label="Supplier email"
+            onChange={(event) =>
+              updateField("supplier_email", event.target.value)
+            }
+            type="email"
+            value={form.supplier_email}
+          />
           <InputField
             id="productImage"
             label="Product image URL"
-            onChange={(event) => updateField("product_image", event.target.value)}
+            onChange={(event) =>
+              updateField("product_image", event.target.value)
+            }
             placeholder="https://example.com/smart-lock.jpg"
             value={form.product_image}
           />
           <div className="modal-actions">
-            <button className="button button-ghost" onClick={onClose} type="button">
+            <button
+              className="button button-ghost"
+              onClick={onClose}
+              type="button"
+            >
               Cancel
             </button>
-            <button className="button button-primary" disabled={isSaving} type="submit">
+            <button
+              className="button button-primary"
+              disabled={isSaving}
+              type="submit"
+            >
               <FiPlus size={18} /> {isSaving ? "Adding..." : "Add product"}
             </button>
           </div>

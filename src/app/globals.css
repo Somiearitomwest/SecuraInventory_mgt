@@ -629,6 +629,19 @@ tbody tr:last-child td {
   font-weight: 600;
 }
 
+.field-error {
+  color: var(--danger);
+  font-size: 12px;
+  margin: 0;
+}
+
+.price-cell {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .field input,
 .field textarea {
   border: 1px solid var(--border);

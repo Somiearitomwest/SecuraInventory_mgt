@@ -181,7 +181,7 @@ export function ProductsTable({
               </th>
               <th onClick={() => handleSort("amount")} style={{ cursor: "pointer", userSelect: "none" }}>
                 <span className="sortable-heading">
-                  Amount
+                  Selling price
                   <FiChevronUp size={14} style={{ opacity: sortKey === "amount" && sortDirection === "asc" ? 1 : 0.3 }} />
                   <FiChevronDown size={14} style={{ opacity: sortKey === "amount" && sortDirection === "desc" ? 1 : 0.3 }} />
                 </span>
@@ -226,7 +226,14 @@ export function ProductsTable({
                       <strong>{product.name}</strong>
                     </div>
                   </td>
-                  <td>{formatCurrency(product.amount)}</td>
+                  <td>
+                    <div className="price-cell">
+                      <span>{formatCurrency(product.amount)}</span>
+                      {toNumber(product.previous_amount) > toNumber(product.amount) ? (
+                        <s className="muted small">{formatCurrency(product.previous_amount)}</s>
+                      ) : null}
+                    </div>
+                  </td>
                   <td>
                     {onQuickAdjustStock ? (
                       <div className="quick-stock-adjust" style={{ display: "flex", alignItems: "center", gap: "8px" }}>

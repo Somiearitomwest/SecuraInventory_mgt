@@ -1,32 +1,43 @@
+"use client";
+
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { envConfig, hasSupabaseConfig } from "./config";
 
-let clientInstance: SupabaseClient | null = null;
+const globalForSupabase = globalThis as typeof globalThis & {
+  __securaSupabase?: SupabaseClient;
+};
+
+function sessionCookie(token: string, maxAge: number) {
+  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `sb-access-token=${token}; path=/; max-age=${maxAge}; SameSite=Lax${secure}`;
+}
 
 export function createSupabaseClient(): SupabaseClient | null {
   if (!hasSupabaseConfig()) {
     return null;
   }
 
-  if (clientInstance) {
-    return clientInstance;
+  if (typeof window !== "undefined" && globalForSupabase.__securaSupabase) {
+    return globalForSupabase.__securaSupabase;
   }
 
-  clientInstance = createClient(envConfig.supabaseUrl, envConfig.supabasePublishableKey);
+  const client = createClient(envConfig.supabaseUrl, envConfig.supabasePublishableKey);
 
-  clientInstance.auth.onAuthStateChange((event, session) => {
+  client.auth.onAuthStateChange((event, session) => {
     if (typeof window === "undefined") {
       return;
     }
 
     if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
-      const token = session?.access_token || "";
-      document.cookie = `sb-access-token=${token}; path=/; max-age=86400; SameSite=Lax; Secure`;
+      sessionCookie(session?.access_token || "", 86400);
     } else if (event === "SIGNED_OUT") {
-      document.cookie = `sb-access-token=; path=/; max-age=0; SameSite=Lax; Secure`;
+      sessionCookie("", 0);
     }
   });
 
-  return clientInstance;
-}
+  if (typeof window !== "undefined") {
+    globalForSupabase.__securaSupabase = client;
+  }
 
+  return client;
+}

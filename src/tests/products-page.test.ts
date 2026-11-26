@@ -27,7 +27,9 @@ test("product creation uses api request logic and shared types", () => {
 
   assert.match(apiSource, /createProduct/);
   assert.match(apiSource, /\.from\("products"\)/);
+  assert.match(apiSource, /previous_amount/);
   assert.match(typesSource, /ProductCreateInput/);
+  assert.match(typesSource, /previous_amount/);
 });
 
 test("product editing and deletion uses api request logic, hook methods, and shared types", () => {
@@ -37,6 +39,8 @@ test("product editing and deletion uses api request logic, hook methods, and sha
 
   assert.match(apiSource, /updateProduct/);
   assert.match(apiSource, /deleteProduct/);
+  assert.match(apiSource, /app_metadata\?\.role !== "admin"/);
+  assert.match(apiSource, /PGRST116/);
   assert.match(typesSource, /ProductUpdateInput/);
   assert.match(hookSource, /updateProduct/);
   assert.match(hookSource, /deleteProduct/);
