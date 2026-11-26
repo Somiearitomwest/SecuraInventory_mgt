@@ -53,13 +53,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new Error("Supabase is not configured.");
     }
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       throw error;
+    }
+
+    if (data.user?.app_metadata?.role !== "admin") {
+      await supabase.auth.signOut();
+      throw new Error("This account cannot access the inventory dashboard.");
     }
   }
 
